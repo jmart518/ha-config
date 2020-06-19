@@ -3,4 +3,3 @@
 <p align="center">
   <img src="videos/ha_frontend_061920.gif">
 </p>
-![Frontend](videos/ha_frontend_061920.gif)
