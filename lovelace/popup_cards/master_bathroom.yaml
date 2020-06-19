@@ -1,0 +1,31 @@
+sensor.master_bathroom_temperature:
+  title: Temperatures
+  card:
+    type: vertical-stack
+    cards:
+      - type: custom:mini-graph-card
+        style: |
+          ha-card {
+            background: rgba(0, 0, 0, 0);
+          }
+        entities:
+        - entity: sensor.master_bathroom_temperature
+        name: Master Bathroom
+        show:
+          labels: false
+          fill: true
+          points: hover
+          extrema: false
+          name: true
+          icon: false
+        color_thresholds_transition: smooth
+        color_thresholds:
+          - value: 50
+            color: "#5998ff"
+          - value: 65
+            color: "#ffaf38"
+          - value: 80
+            color: "#ff5937"
+        line_width: 2
+        hours_to_show: 48
+        animate: true

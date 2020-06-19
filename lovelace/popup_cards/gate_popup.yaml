@@ -1,0 +1,26 @@
+switch.gate_switch:
+  title: Gate information
+  card:
+    type: vertical-stack
+    cards:
+      - type: entities
+        entities:
+          - sensor.gate_wifi_signal
+          - binary_sensor.gate_sensor
+          - switch.gate_reboot
+      - type: 'custom:aarlo-glance'
+        style: |
+          ha-card {
+              margin: 0px 14px 35px 14px;
+              box-shadow: var(--card-box-shadow) !important;
+          }
+        entity: camera.aarlo_gate_cam
+        name: Gate
+        show:
+          - motion
+          - sound
+          - snapshot
+          - battery_level
+          - signal_strength
+          - captured_today
+          - image_date

@@ -1,0 +1,34 @@
+sensor.living_room_thermostat_temperature:
+  title: Living Room
+  card:
+    type: vertical-stack
+    cards:
+      - type: thermostat
+        entity: climate.living_room
+      - type: custom:mini-graph-card
+        style: |
+          ha-card {
+            margin: 55px 14px 25px 14px;
+          }
+        entities:
+            - sensor.living_room_thermostat_temperature
+        name: Temperature
+        show:
+          labels: false
+          fill: true
+          points: hover
+          extrema: false
+          name: false
+          icon: false
+          state: false
+        color_thresholds_transition: smooth
+        color_thresholds:
+          - value: 50
+            color: "#5998ff"
+          - value: 65
+            color: "#ffaf38"
+          - value: 80
+            color: "#ff5937"
+        line_width: 2
+        hours_to_show: 48
+        animate: true

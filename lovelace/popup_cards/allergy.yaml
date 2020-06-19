@@ -1,0 +1,6 @@
+sensor.allergy_index_today:
+  title: Todays allergen
+  card:
+    type: custom:mini-graph-card
+    entities:
+      - entity: sensor.allergy_index_today

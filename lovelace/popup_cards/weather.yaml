@@ -1,0 +1,5 @@
+weather.dark_sky:
+  title: Weather Forecast
+  card:
+    type: weather-forecast
+    entity: weather.dark_sky
