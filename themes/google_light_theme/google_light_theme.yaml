@@ -1,0 +1,100 @@
+# Theme based on Google app light theme
+# Creater: Juan - @juanmtech
+# Website: https://www.juanmtech.com
+# YouTube Channel: https://youtube.com/juanmtech
+# My Home Assistant Config files: https://github.com/JuanMTech/Home_Assistant_files
+#
+#
+Google Light Theme:
+  transparent: "rgba(0,0,0,0.0)"
+  # Header:
+  app-header-background-color: "#F8F9FA"
+  app-header-text-color: "#616161"
+  # Main Interface Colors
+  primary-color: "#607d8b"
+  light-primary-color: var(--primary-color)
+  primary-background-color: "#F8F9FA"
+  secondary-background-color: var(--primary-background-color)
+  divider-color: var(--primary-background-color)
+  # Text
+  primary-text-color: "#757575"
+  secondary-text-color: "#999999"
+  text-primary-color: "#FFFFFF"
+  disabled-text-color: "#9e9e9e"
+  card-header-text-color: "#616161"
+  # Sidebar Menu
+  sidebar-icon-color: var(--primary-text-color)
+  sidebar-text-color: '#757575'
+  sidebar-background-color: "#FFFFFF"
+  sidebar-selected-background-color: var(--primary-background-color)
+  sidebar-selected-icon-color: "#607d8b"
+  sidebar-selected-text-color: var(--sidebar-selected-icon-color))
+  # States and Badges
+  state-icon-color: "#616161"
+  state-icon-active-color: "#ffc107"
+  state-icon-unavailable-color: var(--disabled-text-color)
+  # Sliders
+  paper-slider-knob-color: "#607d8b"
+  paper-slider-knob-start-color: var(--paper-slider-knob-color)
+  paper-slider-pin-color: var(--paper-slider-knob-color)
+  paper-slider-active-color: var(--paper-slider-knob-color)
+  paper-slider-secondary-color: var(--light-primary-color)
+  # Labels
+  label-badge-background-color: "#F8FAF9"
+  label-badge-text-color: "#4D5575"
+  label-badge-red: "#C7484C"
+  label-badge-green: "#6DC071"
+  label-badge-blue: "#51AAD1"
+  label-badge-yellow: "#D9B757"
+  label-badge-gray: "#616161"
+  # Cards
+  ha-alert-background: "#F8E9E6"
+  ha-card-border-radius: "10px"
+  #ha-card-box-shadow: "0 16px 22px 2px rgba(0, 0, 0, 0.05), 0 6px 30px 5px rgba(0, 0, 0, 0.04), 0 8px 10px -17px rgba(0, 0, 0, 0.2)"
+  card-box-shadow: "0 16px 22px 2px rgba(0, 0, 0, 0.05), 0 6px 30px 5px rgba(0, 0, 0, 0.04), 0 8px 10px -17px rgba(0, 0, 0, 0.2)"
+  ha-card-box-shadow: "none"
+  paper-card-background-color: 'var(--transparent)'
+  #paper-card-background-color: var(--sidebar-background-color);
+  #paper-card-background-color: "#FFFFFF"
+  paper-listbox-background-color: "#FFFFFF"
+  # Switches
+  switch-checked-button-color: "#607d8b"
+  switch-checked-track-color: "#90a4ae"
+  switch-unchecked-button-color: "#616161"
+  switch-unchecked-track-color: "#888b91"
+  # Toggles
+  paper-toggle-button-checked-button-color: var(--switch-checked-button-color)
+  paper-toggle-button-checked-bar-color: var(--switch-checked-track-color)
+  paper-toggle-button-unchecked-button-color: var(--switch-unchecked-button-color)
+  paper-toggle-button-unchecked-bar-color: var(--switch-unchecked-track-color)
+  # Table
+  table-row-background-color: var(--primary-background-color)
+  table-row-alternative-background-color: var(--secondary-background-color)
+  data-table-background-color: var(--primary-background-color)
+  # Custom Header
+  #ch-background: 'var(--primary-background-color)'
+  #ch-background: 'rgba(238, 238, 238, 0.9)'
+  ch-background: 'var(--app-header-background-color)'
+  ch-active-tab-color: '#37474f'
+  ch-notification-dot-color: 'var(--accent-color)'
+  ch-all-tabs-color: 'var(--disabled-text-color)'
+  #ch-tab-indicator-color: 'var(--accent-color)'
+  ch-tab-indicator-color: 'var(--transparent)'
+  ch-options-color: var(--transparent)
+  ch-menu-color: var(--transparent)
+  # Card Temp
+  card-temperature-cold: '#e3f2fd'
+  card-temperature-warm: '#fff3e0'
+  card-temperature-hot: '#ffa726'
+  # Simple Weather
+  sunny_start: 'rgba(249, 233, 181, 0.6)'
+  sunny_end: 'rgba(249, 233, 181)'
+  fog_start: 'rgba(196, 200, 206, 0.6)'
+  fog_end: 'rgba(196, 200, 206)'
+  snowy_start: 'rgba(202, 205, 209, 0.6)'
+  swnowy_end: 'rgba(202, 205, 209)'
+  default_start: 'rgba(159, 193, 249, 0.6)'
+  default_end: 'rgba(159, 193, 249)'
+  # Dropdowns
+  material-background-color: var(--paper-card-background-color)
+  material-secondary-background-color: var(--primary-background-color)

@@ -1,0 +1,1748 @@
+###########################################################
+# Custom Header
+###########################################################
+custom_header: !include lovelace/custom_header.yaml
+
+###########################################################
+# Swipe
+###########################################################
+#swipe_nav:
+#  wrap: true
+  #animate: flip
+#  prevent_default: true
+#  swipe_amount: 20
+
+###########################################################
+# Decluttering
+###########################################################
+#decluttering_templates: !include_dir_merge_named lovelace/decluttering/
+
+###########################################################
+# Preload
+###########################################################
+#preload_cards:
+#  - fold-entity-row
+#  - card-mod
+#preload_rows:
+#  - fold-entity-row
+#  - card-mod
+
+###########################################################
+# Popup Cards
+###########################################################
+popup_cards: !include_dir_merge_named lovelace/popup_cards/
+
+###########################################################
+# Style
+###########################################################
+cam_card:
+  style: &cam_card |
+    ha-card {
+        margin: 0px 14px 10px 14px;
+        box-shadow: var(--card-box-shadow) !important;
+    }
+
+card_header:
+  style: &card_header
+    .: |
+      ha-card {
+        margin: 10px 0px 0px 8px;
+      }
+    ha-markdown:
+      $: |
+        h1 {
+          font-size: 15px !important;
+          font-weight: 500 !important;
+          padding: 0px 0px 0px 8px !important;
+          border-left: 3px solid rgba(81, 134, 236);
+          color: var(--card-header-text-color);
+        }
+
+button_card:
+  style: &button_card
+    .: |
+      ha-card {
+        margin: -20px 0px -105px -35px;
+        padding: 20px !important;
+        }
+      h1 {
+          font-weight: 500 !important;
+          font-size: 19px !important;
+          color: var(--app-header-text-color) !important;
+          margin: -10px 0px -8px -25px !important;
+        }
+      p {
+          color: var(--secondary-text-color) !important;
+          font-size: 12px !important;
+          margin-left: -25px !important;
+        }
+      ha-icon {
+        margin-top: -14px;
+        background-color: rgba(81, 134, 236, 0.15);
+        border-radius: 50px;
+        padding: 10px;
+        }
+
+###########################################################
+# Views
+###########################################################
+title: Home
+views:
+  - title: default_view
+    path: default_view
+    icon: 'mdi:home-assistant'
+    badges: []
+    cards:
+        ###########################################################
+        # Welcome
+        ###########################################################
+      - type: vertical-stack
+        cards:
+          - type: markdown
+            style: |
+              ha-card {
+                animation: fadeOutUp 1s ease-out;
+                animation-delay: 2.5s;
+                animation-fill-mode: forwards;
+                margin: 12px 0px -50px 0px;
+                font-size: 20px !important;
+                font-weight: 500 !important;
+              }
+              ha-markdown {
+                color: var(--card-header-text-color);
+                text-align: center;
+              }
+              @keyframes fadeOutUp {
+                from {
+                  opacity: 0.7;
+                }
+
+                to {
+                  opacity: 0;
+                  -webkit-transform: translate3d(0, -22%, 0);
+                  transform: translate3d(0, -22%, 0);
+                }
+              }
+            content: |
+                Home Assistant
+          - type: custom:layout-card
+            layout: grid
+            cards:
+              - type: custom:state-switch
+                gridcol: 1 / 5
+                entity: user
+                states:
+                  JT Martinez:
+                    type: markdown
+                    style: |
+                      ha-card {
+                        animation: fadeInUp 1s ease-out;
+                        animation-delay: 2.75s;
+                        animation-fill-mode: forwards;
+                        opacity: 0;
+                        margin: -18px 11px 5px 10px;
+                        font-size: 20px !important;
+                        font-weight: 500 !important;
+                      }
+                      @keyframes fadeInUp {
+                        from {
+                          opacity: 0;
+                          -webkit-transform: translate3d(0, 15%, 0);
+                          transform: translate3d(0, 15%, 0);
+                        }
+                        to {
+                          opacity: 1;
+                          -webkit-transform: translate3d(0, 0, 0);
+                          transform: translate3d(0, 0, 0);
+                        }
+                      }
+                      ha-markdown {
+                        color: var(--app-header-text-color);
+                      }
+                    content: >
+                        {% if now().hour < 5 %}
+                          {{ [
+                            'Good night, JT',
+                            'Have a great night!',
+                            'See you tomorrow'
+                            ] |random }}
+                        {% elif now().hour < 12 %}
+                          {{ [
+                            'Good morning, JT',
+                            "It's a new day", 'Good morning!',
+                            'Have a great day'
+                            ] |random }}
+                        {% elif now().hour < 17 %}
+                          {{ [
+                            'Good afternoon, JT',
+                            'Good afternoon!',
+                            'Afternoon, JT!',
+                            "Hope your afternoon's easy-breezy"
+                            ] |random }}
+                        {% else %}
+                          {{ [
+                            'Have a nice evening, JT',
+                            'Good evening!'
+                            ] |random }}
+                        {% endif %}
+                  Kendra Martinez:
+                    type: markdown
+                    style: |
+                      ha-card {
+                        animation: fadeInUp 1s ease-out;
+                        animation-delay: 2.75s;
+                        animation-fill-mode: forwards;
+                        opacity: 0;
+                        margin: -18px 11px 5px 10px;
+                        font-size: 20px !important;
+                        font-weight: 500 !important;
+                      }
+                      @keyframes fadeInUp {
+                        from {
+                          opacity: 0;
+                          -webkit-transform: translate3d(0, 15%, 0);
+                          transform: translate3d(0, 15%, 0);
+                        }
+                        to {
+                          opacity: 1;
+                          -webkit-transform: translate3d(0, 0, 0);
+                          transform: translate3d(0, 0, 0);
+                        }
+                      }
+                      ha-markdown {
+                        color: var(--app-header-text-color);
+                      }
+                    content: >
+                        {% if now().hour < 5 %}
+                          {{ [
+                            'Good night, Kendra',
+                            'Have a great night!',
+                            'See you tomorrow'
+                            ] |random }}
+                        {% elif now().hour < 12 %}
+                          {{ [
+                            'Good morning, Kendra',
+                            "It's a new day", 'Good morning!',
+                            'Have a great day'
+                            ] |random }}
+                        {% elif now().hour < 17 %}
+                          {{ [
+                            'Good afternoon, Kendra',
+                            'Good afternoon!',
+                            'Afternoon, Kendra!',
+                            "Hope your afternoon's easy-breezy"
+                            ] |random }}
+                        {% else %}
+                          {{ [
+                            'Have a nice evening, Kendra',
+                            'Good evening!'
+                            ] |random }}
+                        {% endif %}
+              - type: custom:state-switch
+                gridcol: 5 / 5
+                entity: user
+                states:
+                  JT Martinez:
+                    type: picture
+                    tap_action:
+                      action: call-service
+                      service: browser_mod.lovelace_reload
+                    style: |
+                      ha-card {
+                        animation: fadeInUp 1s ease-out;
+                        animation-delay: 2.75s;
+                        animation-fill-mode: forwards;
+                        opacity: 0;
+                        width: 36px;
+                        margin-left: auto;
+                        margin-right: 16px;
+                        margin-top: -10px;
+                        box-shadow: none;
+                      }
+                      @keyframes fadeInUp {
+                        from {
+                          opacity: 0;
+                          -webkit-transform: translate3d(0, 15%, 0);
+                          transform: translate3d(0, 15%, 0);
+                        }
+                        to {
+                          opacity: 1;
+                          -webkit-transform: translate3d(0, 0, 0);
+                          transform: translate3d(0, 0, 0);
+                        }
+                      }
+                    image: '/local/images/people/jmart_circle.png'
+                  Kendra Martinez:
+                    type: picture
+                    tap_action:
+                      action: call-service
+                      service: browser_mod.lovelace_reload
+                    style: |
+                      ha-card {
+                        animation: fadeInUp 1s ease-out;
+                        animation-delay: 2.75s;
+                        animation-fill-mode: forwards;
+                        opacity: 0;
+                        width: 36px;
+                        margin-left: auto;
+                        margin-right: 16px;
+                        margin-top: -10px;
+                        box-shadow: none;
+                      }
+                      @keyframes fadeInUp {
+                        from {
+                          opacity: 0;
+                          -webkit-transform: translate3d(0, 15%, 0);
+                          transform: translate3d(0, 15%, 0);
+                        }
+                        to {
+                          opacity: 1;
+                          -webkit-transform: translate3d(0, 0, 0);
+                          transform: translate3d(0, 0, 0);
+                        }
+                      }
+                    image: '/local/images/people/kendra_circle.png'
+
+        ###########################################################
+        # Swipe
+        ###########################################################
+      #- type: custom:swipe-card
+      #  start_card: 2
+      #  parameters:
+      #    roundLengths: true
+      #    autoHeight: true
+      #    shortSwipes: false
+      #    longSwipesRatio: 0.25
+      #  cards:
+            ###########################################################
+            # Cameras
+            ###########################################################
+          - type: vertical-stack
+            cards:
+              - type: custom:state-switch
+                entity: sensor.daylight
+                states:
+                  night_start:
+                    type: button
+                    style: |
+                      ha-card {
+                        --paper-card-background-color: var(--sidebar-background-color);
+                          box-shadow: var(--card-box-shadow);
+                          margin: 25px 105px -1px 105px;
+                          border-radius: 50px;
+                      }
+                    name: Time for bed?
+                    tap_action:
+                      action: call-service
+                      service: script.turn_on
+                      service_data:
+                        entity_id: script.bedtime
+
+            ###########################################################
+            # Home
+            ###########################################################
+          - type: vertical-stack
+            cards:
+                ###########################################################
+                # Bedtime
+                ###########################################################
+              - type: custom:state-switch
+                entity: sensor.daylight
+                states:
+                  night_start:
+                    type: button
+                    style: |
+                      ha-card {
+                        --paper-card-background-color: var(--sidebar-background-color);
+                          box-shadow: var(--card-box-shadow);
+                          margin: 25px 105px -1px 105px;
+                          border-radius: 50px;
+                      }
+                    name: Time for bed?
+                    tap_action:
+                      action: call-service
+                      service: script.turn_on
+                      service_data:
+                        entity_id: script.bedtime
+
+                ###########################################################
+                # JT Alert
+                ###########################################################
+              - type: custom:state-switch
+                entity: input_boolean.alarm_triggered_jt
+                states:
+                  "on":
+                    type: vertical-stack
+                    cards:
+                      - type: markdown
+                        style: |
+                          ha-card {
+                            --paper-card-background-color: var(--ha-alert-background);
+                              box-shadow: var(--card-box-shadow);
+                              margin: 28px 14px 5px 14px;
+                              border-radius: 50px !important;
+                              animation: zoomIn;
+                              opacity: 0;
+                              -webkit-animation-duration: 250ms;
+                              animation-duration: 250ms;
+                              -webkit-animation-fill-mode: both;
+                              animation-fill-mode: both;
+                          }
+                          @keyframes zoomIn {
+                            from {
+                              opacity: 0;
+                              -webkit-transform: scale3d(0.3, 0.3, 0.3);
+                              transform: scale3d(0.3, 0.3, 0.3);
+                            }
+
+                            50% {
+                              opacity: 1;
+                            }
+                            to {
+                              opacity: 1;
+                            }
+                          }
+                          h2 {
+                            font-size: 16px;
+                            font-weight: 400;
+                            padding: 5px 0px 5px 14px;
+                            color: var(--card-header-text-color);
+                          }
+                          ha-icon {
+                            margin-top: -3px !important;
+                          }
+                        content: |
+                          ## <font color="#e53935"><ha-icon icon=mdi:alert-outline></ha-icon></font>&nbsp;&nbsp;&nbsp;<b>Alert!</b>&nbsp;&nbsp;Alarm has been triggered!
+                      - type: custom:button-card
+                        style: |
+                          ha-card {
+                              animation: fadeIn 1s linear;
+                              animation-fill-mode: forwards;
+                              animation-delay: 1s;
+                              opacity: 0;
+                          }
+                          @keyframes fadeIn {
+                              from { opacity: 0; }
+                              to   { opacity: 1; }
+                          }
+                        entity: input_boolean.alarm_triggered_jt
+                        icon: mdi:close
+                        color: rgb(28, 128, 199)
+                        show_name: false
+                        styles:
+                          card:
+                            - width: 60px
+                            - height: 60px
+                            - padding: 0
+                            - margin-top: -74px
+                            - margin-left: 335px
+                          icon:
+                            - color: var(--card-header-text-color);
+
+                ###########################################################
+                # Kendra Alert
+                ###########################################################
+              - type: custom:state-switch
+                entity: input_boolean.alarm_triggered_kendra
+                states:
+                  "on":
+                    type: vertical-stack
+                    cards:
+                      - type: markdown
+                        style: |
+                          ha-card {
+                            --paper-card-background-color: var(--ha-alert-background);
+                              box-shadow: var(--card-box-shadow);
+                              margin: 28px 14px 5px 14px;
+                              border-radius: 50px !important;
+                              animation: zoomIn;
+                              opacity: 0;
+                              -webkit-animation-duration: 250ms;
+                              animation-duration: 250ms;
+                              -webkit-animation-fill-mode: both;
+                              animation-fill-mode: both;
+                          }
+                          @keyframes zoomIn {
+                            from {
+                              opacity: 0;
+                              -webkit-transform: scale3d(0.3, 0.3, 0.3);
+                              transform: scale3d(0.3, 0.3, 0.3);
+                            }
+
+                            50% {
+                              opacity: 1;
+                            }
+                            to {
+                              opacity: 1;
+                            }
+                          }
+                          h2 {
+                            font-size: 16px;
+                            font-weight: 400;
+                            padding: 5px 0px 5px 14px;
+                            color: var(--card-header-text-color);
+                          }
+                          ha-icon {
+                            margin-top: -3px !important;
+                          }
+                        content: |
+                          ## <font color="#e53935"><ha-icon icon=mdi:alert-outline></ha-icon></font>&nbsp;&nbsp;&nbsp;<b>Alert!</b>&nbsp;&nbsp;Alarm has been triggered!
+                      - type: custom:button-card
+                        style: |
+                          ha-card {
+                              animation: fadeIn 1s linear;
+                              animation-fill-mode: forwards;
+                              animation-delay: 1s;
+                              opacity: 0;
+                          }
+                          @keyframes fadeIn {
+                              from { opacity: 0; }
+                              to   { opacity: 1; }
+                          }
+                        entity: input_boolean.alarm_triggered_kendra
+                        icon: mdi:close
+                        color: rgb(28, 128, 199)
+                        show_name: false
+                        styles:
+                          card:
+                            - width: 60px
+                            - height: 60px
+                            - padding: 0
+                            - margin-top: -74px
+                            - margin-left: 335px
+                          icon:
+                            - color: var(--card-header-text-color);
+
+                ###########################################################
+                # Today Header
+                ###########################################################
+              - type: markdown
+                style: *card_header
+                content: |
+                  {% if now().month in (1,) %}
+                    # TODAY - January {{ now().day }}
+                  {% elif now().month in (2,) %}
+                    # TODAY - February {{ now().day }}
+                  {% elif now().month in (3,) %}
+                    # TODAY - March {{ now().day }}
+                  {% elif now().month in (4,) %}
+                    # TODAY - April {{ now().day }}
+                  {% elif now().month in (5,) %}
+                    # TODAY - May {{ now().day }}
+                  {% elif now().month in (6,) %}
+                    # TODAY - June {{ now().day }}
+                  {% elif now().month in (7,) %}
+                    # TODAY - July {{ now().day }}
+                  {% elif now().month in (8,) %}
+                    # TODAY - August {{ now().day }}
+                  {% elif now().month in (9,) %}
+                    # TODAY - September {{ now().day }}
+                  {% elif now().month in (10,) %}
+                    # TODAY - October {{ now().day }}
+                  {% elif now().month in (11,) %}
+                    # TODAY - November {{ now().day }}
+                  {% elif now().month in (12,) %}
+                    # TODAY - December {{ now().day }}
+                  {% endif %}
+
+                ###########################################################
+                # Weather
+                ###########################################################
+              - type: entities
+                style:
+                  .: |
+                    ha-card {
+                      margin: -5px 14px 25px 14px;
+                      box-shadow: var(--card-box-shadow);
+                      padding: 0px !important;
+                      background-image: 
+                        {% if is_state('weather.dark_sky', 'sunny') %}
+                            linear-gradient(var(--sunny_start), var(--sunny_end)) !important;
+                        {% elif is_state('weather.dark_sky', 'fog')  %}
+                            linear-gradient(var(--fog_start), var(--fog_end)) !important;
+                        {% elif is_state('weather.dark_sky', 'snowy')  %}
+                            linear-gradient(var(--snowy_start), var(--snowy_end)) !important;
+                        {% endif %} 
+                            linear-gradient(var(--default_start), var(--default_end)) !important;
+                      1animation: fadeIn 1.25s ease-out;
+                      animation-fill-mode: forwards;
+                      animation-delay: 1s;
+                      1opacity: 0;
+                    }
+                    @-webkit-keyframes fadeIn {
+                      from {
+                        opacity: 0;
+                      }
+                      to {
+                        opacity: 1;
+                      }
+                    }
+                    @keyframes fadeIn {
+                      from {
+                        opacity: 0;
+                      }
+                      to {
+                        opacity: 1;
+                      }
+                    }
+                  "#states":
+                    $:
+                    fold-entity-row:
+                      $:
+                        "#head":
+                            ha-icon:
+                              $:
+                                ha-svg-icon:
+                                  $: |
+                                    svg {
+                                      margin-top: -15px !important;
+                                    }
+                            hui-section-row:
+                              $: |
+                                .divider {
+                                  opacity: 0 !important;
+                                }
+                                .label {
+                                  opacity: 0 !important;
+                                } 
+                        "#items": |
+                            #items {
+                              padding: 0px 0px 0px 0px !important;
+                              margin: 0px !important;
+                            }
+                        .state-card-dialog:
+                          $: |
+                            hui-generic-entity-row {
+                              padding: 0px !important;
+                              margin-top: -6px !important;
+                            }
+                            ha-card {
+                              padding: 5px 0px 5px 0px !important;
+                            }
+                        secondaryinfo-entity-row:
+                          $:
+                            hui-toggle-entity-row:
+                              $: |
+                                hui-generic-entity-row {
+                                  padding: 5px 0px 5px 0px !important;
+                                }
+                entities:
+                  - type: custom:hui-element
+                    card_type: weather-forecast
+                    style: |
+                        ha-card {
+                          background-color: rgba(0, 0, 0, 0.0) !important;
+                          padding: 32px 30px 32px 20px !important;
+                          margin: -23px -15px -90px -15px !important;
+                        }
+                        div.name {
+                            opacity: 0;
+                        }
+                        div.state {
+                            opacity: 1 !important;
+                            color: var(--primary-text-color) !important;
+                            font-weight: 500 !important;
+                            font-size: 18px !important;
+                            text-align: left !important;
+                            padding-bottom: 4px;
+                            margin: 2px 0px 0px 50px;
+                        }
+                        div.temp {
+                            color: var(--primary-text-color) !important;
+                            font-weight: 500 !important;
+                            font-size: 18px !important;
+                            padding-bottom: 4px;
+                            text-align: left !important;
+                            margin: 2px 0px 0px -250px;
+                        }
+                        div.temp:after {
+                            content: "° - ";
+                            margin-left: -4px;
+                        }
+                        div.temp span {
+                            opacity: 0;
+                        }
+                        div.attribute {
+                            color: var(--secondary-text-color);
+                            text-align: left !important;
+                            margin: 0px 0px 0px -250px;
+                        }
+                    name: Home
+                    entity: weather.dark_sky
+                    show_forecast: false
+                  - type: custom:fold-entity-row
+                    head:
+                      type: section
+                      label: '.'
+                    items:
+                      - entity: sensor.blank
+                      - type: custom:weather-card
+                        tap_action:
+                          action: none
+                        entity: weather.dark_sky
+                        current: false
+                        details: false
+                        forecast: true
+
+                ###########################################################
+                # At a glance
+                ###########################################################
+              - type: entities
+                style:
+                  .: |
+                    ha-card {
+                      --paper-card-background-color: var(--sidebar-background-color);
+                        box-shadow: var(--card-box-shadow);
+                        margin: -18px 14px 45px 14px;
+                        padding: 0px;
+                        }
+                  "#states":
+                    fold-entity-row:
+                      $:
+                        "#head":
+                            ha-icon:
+                              $:
+                                ha-svg-icon:
+                                  $: |
+                                    svg {
+                                      opacity: 0 !important;
+                                    }
+                            hui-section-row:
+                              $: |
+                                .divider {
+                                  opacity: 0.2 !important;
+                                  margin-left: 20px !important;
+                                  margin-right: -20px !important;
+                                }
+                                .label {
+                                  text-align: center !important;
+                                  font-weight: 400 !important;
+                                  font-size: 16px !important;
+                                  padding-bottom: 2px !important;
+                                  margin-bottom: 4px !important;
+                                  margin-left: 30px !important;
+                                  color: var(--primary-color) !important;
+                                  opacity: 0.9 !important;
+                                } 
+                        "#items": |
+                            #items {
+                              padding: 0px !important;
+                              margin: -6px 0px 0px -4px !important;
+                            }
+                        .state-card-dialog:
+                          $: |
+                            hui-generic-entity-row {
+                              padding: 5px 0px 5px 0px !important;
+                            }
+                            ha-card {
+                              padding: 5px 0px 5px 0px !important;
+                            }
+                        secondaryinfo-entity-row:
+                          $:
+                            hui-toggle-entity-row:
+                              $: |
+                                hui-generic-entity-row {
+                                  padding: 5px 0px 5px 0px !important;
+                                }
+                show_header_toggle: false
+                title: null
+                state_color: true
+                entities:
+                  - lock.schlage_allegion_be469_touchscreen_deadbolt_locked
+                  - entity: cover.garage_door_opener
+                    type: "custom:secondaryinfo-entity-row"
+                    secondary_info: '[[ if(cover.garage_door_opener.state == "closed", "Closed", "Open") ]]'
+                  - entity: switch.gate_switch
+                    type: "custom:secondaryinfo-entity-row"
+                    secondary_info: '[[ if(input_boolean.latch_gate.state == "on", "Latched", "Press/hold to latch open") ]]'
+                    deep_press: true
+                    hold_action:
+                      haptic: heavy
+                      action: call-service
+                      service: input_boolean.toggle
+                      service_data:
+                        entity_id: input_boolean.latch_gate
+                  - switch.fountain_outlet_switch
+                  - alarm_control_panel.home_alarm
+                  #- entity: alarm_control_panel.ha_alarm
+                  #- sensor.audi_s6_model
+                  - type: custom:fold-entity-row
+                    head:
+                      type: section
+                      label: more
+                    items:
+                      - type: custom:auto-entities
+                        show_empty: false
+                        card:
+                          type: entities
+                          style: |
+                            ha-card {
+                              margin: 0px;
+                            }
+                          show_header_toggle: false
+                        filter:
+                          include:
+                            - entity_id: "*door*"
+                              state: "Open"
+                            - entity_id: "*door*"
+                              state: "on"
+                            - entity_id: "*window*"
+                              state: "on"
+                            - entity_id: binary_sensor.back_gate
+                              state: "on"
+                            - entity_id: binary_sensor.gate_control
+                              state: "on"
+                            - name: /[Ll]ight/
+                              not:
+                                domain: input_boolean
+                              state: "on"
+                            - name: /[Ff]an/
+                              not:
+                                domain: automation
+                              state: "on"
+                            - name: /[Mm]otion/
+                              not:
+                                domain: input_boolean
+                              state: "on"
+                            - entity_id: sensor.pellet_stove_status
+                              options:
+                                style: |
+                                  :host {
+                                    --paper-item-icon-color: #ff9800;
+                                  }
+                              state: "Running"
+                            - entity_id: sensor.dishwasher_status
+                              state: "Running"
+                            - state: "unlocked"
+                            - state: "Yes"
+                            - entity_id: "*osm"
+                              not:
+                                state: Home
+                          exclude:
+                            - name: /[Cc]amera/
+                            - entity_id: group.bedtime_lights
+                            - entity_id: light.kitchen_light_level
+                            - entity_id: light.flux_led_strip
+                            - entity_id: light.kitchen_light_2_level
+                            - entity_id: switch.garage_light_switch
+                            - entity_id: binary_sensor.big_garage_door_tilt_sensor
+                            - entity_id: binary_sensor.doorbell_sensor
+                            - entity_id: fan.living_room_south_fan_level
+                            - entity_id: fan.living_room_north_fan_level
+
+                ###########################################################
+                # Bedrooms
+                ###########################################################
+              - type: markdown
+                style: *card_header
+                content: |
+                  # BEDROOMS
+
+                ###########################################################
+                # Emerson
+                ###########################################################
+              - type: entities
+                style:
+                  .: |
+                    ha-card {
+                      --paper-card-background-color: var(--sidebar-background-color);
+                        padding: 4px 0px 4px 2px !important;
+                        box-shadow: var(--card-box-shadow);
+                        margin: -5px 14px 5px 14px;
+                        1background-color: green;
+                        background:
+                          {% set temp = states('sensor.emerson_bedroom_temperature') | float %}
+                          {% if 0 < temp < 55 %}
+                            linear-gradient(var(--card-temperature-cold), var(--sidebar-background-color));
+                          {% elif 55 <= temp < 80 %}
+                            linear-gradient(var(--sidebar-background-color), var(--sidebar-background-color));
+                          {% elif 80 <= temp < 90 %}
+                            linear-gradient(var(--card-temperature-warm), var(--sidebar-background-color));
+                          {% elif temp >= 90 %}
+                            linear-gradient(var(--card-temperature-hot), var(--sidebar-background-color));
+                          {% else %}
+                            Off
+                          {% endif %};
+                        background-size: cover;
+                    }
+                  "#states":
+                    $:
+                    fold-entity-row:
+                      $:
+                        "#head":
+                            ha-icon:
+                              $: |
+                                svg {
+                                  margin-top: -8px !important;
+                                  color: var(--app-header-text-color) !important;
+                                }
+                            hui-section-row:
+                              $: |
+                                .divider {
+                                  opacity: 0 !important;
+                                  visibility: hidden;
+                                }
+                                .label {
+                                  opacity: 0 !important;
+                                } 
+                        "#items": |
+                            #items {
+                              padding: 0px !important;
+                              margin: 0px 15px 0px 10px !important;
+                            }
+                        .state-card-dialog:
+                          $: |
+                            hui-generic-entity-row {
+                              padding: 5px 0px 5px 0px !important;
+
+                            }
+                            ha-card {
+                              padding: 5px 0px 5px 0px !important;
+                            }
+                        secondaryinfo-entity-row:
+                          $:
+                            hui-toggle-entity-row:
+                              $: |
+                                hui-generic-entity-row {
+                                  padding: 5px 0px 5px 0px !important;
+                                }
+                entities:
+                  - type: 'custom:button-text-card'
+                    style: *button_card
+                    entity: sensor.emerson_bedroom_temperature
+                    title: Emerson
+                    subtitle: |
+                      [[[
+                        if (states['binary_sensor.emerson_motion_sensor'].state == 'off')
+                          return Math.round(entity.state) + "°F and no motion";
+                        return Math.round(entity.state) + "°F and there's motion";
+                      ]]]
+                    icon: 'mdi:hotel'
+                    icon_color: 'rgba(81, 134, 236)'
+                    background_color: 'var(--transparent)'
+                    large: true
+                  - type: custom:fold-entity-row
+                    head:
+                      type: section
+                      label: '.'
+                    items:
+                      - light.emerson_bedroom_light
+                      - entity: fan.emerson_bedroom_fan
+                        type: 'custom:secondaryinfo-entity-row'
+                        secondary_info: '[[ fan.emerson_bedroom_fan.attributes.speed ]]'
+                      #- switch.emerson_heater
+                      - input_boolean.early_kids
+                      - input_boolean.emerson_motion_switch
+                      - type: custom:state-switch
+                        entity: media_player.emerson_bedroom_speaker
+                        states:
+                          "off":
+                            type: entities
+                            style: |
+                              ha-card {
+                                margin: -4px -14px -10px -16px !important;
+                              }
+                            entities:
+                              - media_player.emerson_bedroom_speaker
+                          "on":
+                            type: entities
+                            style: |
+                              ha-card {
+                                margin: -4px -14px -10px -16px !important;
+                              }
+                            entities:
+                              - media_player.emerson_bedroom_speaker
+                          idle:
+                            type: entities
+                            style: |
+                              ha-card {
+                                margin: -4px -14px -10px -16px !important;
+                              }
+                            entities:
+                              - media_player.emerson_bedroom_speaker
+                          playing:
+                            type: media-control
+                            style: |
+                              ha-card {
+                                margin: 18px -31px -16px -26px !important;
+                              }
+                            entity: media_player.emerson_bedroom_speaker
+                          paused:
+                            type: media-control
+                            style: |
+                              ha-card {
+                                margin: 18px -31px -16px -26px !important;
+                              }
+                            entity: media_player.emerson_bedroom_speaker
+
+                ###########################################################
+                # Guest
+                ###########################################################
+              - type: entities
+                style:
+                  .: |
+                    ha-card {
+                      --paper-card-background-color: var(--sidebar-background-color);
+                        padding: 4px 0px 4px 2px !important;
+                        box-shadow: var(--card-box-shadow);
+                        margin: 2px 14px 5px 14px;
+                        background-image:
+                          {% set temp = states('sensor.guest_room_temperature') | float %}
+                          {% if 0 < temp < 55 %}
+                            linear-gradient(var(--card-temperature-cold), var(--sidebar-background-color));
+                          {% elif 55 <= temp < 80 %}
+                            linear-gradient(var(--sidebar-background-color), var(--sidebar-background-color));
+                          {% elif 80 <= temp < 90 %}
+                            linear-gradient(var(--card-temperature-warm), var(--sidebar-background-color));
+                          {% elif temp >= 90 %}
+                            linear-gradient(var(--card-temperature-hot), var(--sidebar-background-color));
+                          {% else %}
+                            Off
+                          {% endif %};
+                    }
+                  "#states":
+                    fold-entity-row:
+                      $:
+                        "#head":
+                            ha-icon:
+                              $: |
+                                svg {
+                                  margin-top: -8px !important;
+                                  color: var(--app-header-text-color) !important;
+                                }
+                            hui-section-row:
+                              $: |
+                                .divider {
+                                  opacity: 0 !important;
+                                }
+                                .label {
+                                  opacity: 0 !important;
+                                } 
+                        "#items": |
+                            #items {
+                              padding: 0px !important;
+                              margin: 0px 15px 0px 10px !important;
+                            }
+                        .state-card-dialog:
+                          $: |
+                            hui-generic-entity-row {
+                              padding: 5px 0px 5px 0px !important;
+                            }
+                            ha-card {
+                              padding: 5px 0px 5px 0px !important;
+                            }
+                        secondaryinfo-entity-row:
+                          $:
+                            hui-toggle-entity-row:
+                              $: |
+                                hui-generic-entity-row {
+                                  padding: 5px 0px 5px 0px !important;
+                                }
+                entities:
+                  - type: 'custom:button-text-card'
+                    style: *button_card
+                    entity: sensor.guest_room_temperature
+                    title: Guest
+                    subtitle: |
+                      [[[
+                        if (states['binary_sensor.guest_room_motion_sensor'].state == 'off')
+                          return Math.round(entity.state) + "°F and no motion";
+                        return Math.round(entity.state) + "°F and there's motion";
+                      ]]]
+                    icon: 'mdi:hotel'
+                    icon_color: 'rgba(81, 134, 236)'
+                    background_color: 'var(--transparent)'
+                    large: true
+                  - type: custom:fold-entity-row
+                    head:
+                      type: section
+                      label: '.'
+                    items:
+                      - light.guest_room_light_level
+                      - entity: fan.guest_room_fan_level
+                        type: "custom:secondaryinfo-entity-row"
+                        secondary_info: "[[ fan.guest_room_fan_level.attributes.speed ]]"
+                      - input_boolean.guest_mode
+                      - entity: media_player.guest_mibox
+                      - type: custom:state-switch
+                        entity: media_player.guest_room_speaker
+                        states:
+                          "off":
+                            type: entities
+                            style: |
+                              ha-card {
+                                margin: -4px -14px -10px -16px !important;
+                              }
+                            entities:
+                              - media_player.guest_room_speaker
+                          "on":
+                            type: entities
+                            style: |
+                              ha-card {
+                                margin: -4px -14px -10px -16px !important;
+                              }
+                            entities:
+                              - media_player.guest_room_speaker
+                          idle:
+                            type: entities
+                            style: |
+                              ha-card {
+                                margin: -4px -14px -10px -16px !important;
+                              }
+                            entities:
+                              - media_player.guest_room_speaker
+                          playing:
+                            type: media-control
+                            style: |
+                              ha-card {
+                                margin: 18px -31px -16px -26px !important;
+                              }
+                            entity: media_player.guest_room_speaker
+                          paused:
+                            type: media-control
+                            style: |
+                              ha-card {
+                                margin: 18px -31px -16px -26px !important;
+                              }
+                            entity: media_player.guest_room_speaker
+
+                ###########################################################
+                # Master Bedroom
+                ###########################################################
+              - type: entities
+                style:
+                  .: |
+                    ha-card {
+                      --paper-card-background-color: var(--sidebar-background-color);
+                        padding: 4px 0px 4px 2px !important;
+                        box-shadow: var(--card-box-shadow);
+                        margin: 2px 14px 5px 14px;
+                        background-image:
+                          {% set temp = states('sensor.master_bedroom_temperature') | float %}
+                          {% if 0 < temp < 55 %}
+                            linear-gradient(var(--card-temperature-cold), var(--sidebar-background-color));
+                          {% elif 55 <= temp < 80 %}
+                            linear-gradient(var(--sidebar-background-color), var(--sidebar-background-color));
+                          {% elif 80 <= temp < 90 %}
+                            linear-gradient(var(--card-temperature-warm), var(--sidebar-background-color));
+                          {% elif temp >= 90 %}
+                            linear-gradient(var(--card-temperature-hot), var(--sidebar-background-color));
+                          {% else %}
+                            Off
+                          {% endif %};
+                    }
+                  "#states":
+                    fold-entity-row:
+                      $:
+                        "#head":
+                            ha-icon:
+                              $: |
+                                svg {
+                                  margin-top: -8px !important;
+                                  color: var(--app-header-text-color) !important;
+                                }
+                            hui-section-row:
+                              $: |
+                                .divider {
+                                  opacity: 0 !important;
+                                }
+                                .label {
+                                  opacity: 0 !important;
+                                } 
+                        "#items": |
+                            #items {
+                              padding: 0px !important;
+                              margin: 0px 15px 0px 10px !important;
+                            }
+                        .state-card-dialog:
+                          $: |
+                            hui-generic-entity-row {
+                              padding: 5px 0px 5px 0px !important;
+                            }
+                            ha-card {
+                              padding: 5px 0px 5px 0px !important;
+                            }
+                        secondaryinfo-entity-row:
+                          $:
+                            hui-toggle-entity-row:
+                              $: |
+                                hui-generic-entity-row {
+                                  padding: 5px 0px 5px 0px !important;
+                                }
+                entities:
+                  - type: 'custom:button-text-card'
+                    style: *button_card
+                    entity: sensor.master_bedroom_temperature
+                    title: Master
+                    subtitle: |
+                      [[[
+                        if (states['binary_sensor.master_bedroom_motion_sensor'].state == 'off')
+                          return Math.round(entity.state) + "°F and no motion";
+                        return Math.round(entity.state) + "°F and there's motion";
+                      ]]]
+                    icon: 'mdi:hotel'
+                    icon_color: 'rgba(81, 134, 236)'
+                    background_color: 'var(--transparent)'
+                    large: true
+                  - type: custom:fold-entity-row
+                    head:
+                      type: section
+                      label: '.'
+                    items:
+                      - light.master_bedroom_light_level
+                      - light.master_bedroom_recessed_lights_level
+                      - entity: fan.master_bedroom_fan_level
+                        type: "custom:secondaryinfo-entity-row"
+                        secondary_info: "[[ fan.master_bedroom_fan_level.attributes.speed ]]"
+                      - light.master_bedroom_closet_light_level
+                      #- switch.master_bedroom_fireplace
+                      - entity: media_player.master_bedroom_mibox
+                        type: custom:mini-media-player
+                        icon: mdi:television
+                        artwork_border: true
+                        group: true
+                        shortcuts:
+                          - script.master_bedroom_tv_screensaver
+                      - entity: media_player.the_bug_s_tv_un60d6420
+                        type: custom:mini-media-player
+                        icon: mdi:television
+                        hide:
+                          info: true
+                          source: true
+                          controls: true
+                          volume: true
+                        group: true
+                      - entity: media_player.master_bedroom_speaker
+                        type: custom:mini-media-player
+                        icon: mdi:speaker
+                        show_tts: google
+                        group: true
+
+                ###########################################################
+                # Teya Bedroom
+                ###########################################################
+              - type: entities
+                style:
+                  .: |
+                    ha-card {
+                      --paper-card-background-color: var(--sidebar-background-color);
+                        padding: 4px 0px 4px 2px !important;
+                        box-shadow: var(--card-box-shadow);
+                        margin: 2px 14px 45px 14px;
+                        background-image:
+                          {% set temp = states('sensor.teya_bedroom_temperature') | float %}
+                          {% if 0 < temp < 55 %}
+                            linear-gradient(var(--card-temperature-cold), var(--sidebar-background-color));
+                          {% elif 55 <= temp < 80 %}
+                            linear-gradient(var(--sidebar-background-color), var(--sidebar-background-color));
+                          {% elif 80 <= temp < 90 %}
+                            linear-gradient(var(--card-temperature-warm), var(--sidebar-background-color));
+                          {% elif temp >= 90 %}
+                            linear-gradient(var(--card-temperature-hot), var(--sidebar-background-color));
+                          {% else %}
+                            Off
+                          {% endif %};
+                    }
+                  "#states":
+                    fold-entity-row:
+                      $:
+                        "#head":
+                            ha-icon:
+                              $: |
+                                svg {
+                                  margin-top: -8px !important;
+                                  color: var(--app-header-text-color) !important;
+                                }
+                            hui-section-row:
+                              $: |
+                                .divider {
+                                  opacity: 0 !important;
+                                }
+                                .label {
+                                  opacity: 0 !important;
+                                } 
+                        "#items": |
+                            #items {
+                              padding: 0px !important;
+                              margin: 0px 15px 0px 10px !important;
+                            }
+                        .state-card-dialog:
+                          $: |
+                            hui-generic-entity-row {
+                              padding: 5px 0px 5px 0px !important;
+                            }
+                            ha-card {
+                              padding: 5px 0px 5px 0px !important;
+                            }
+                        secondaryinfo-entity-row:
+                          $:
+                            hui-toggle-entity-row:
+                              $: |
+                                hui-generic-entity-row {
+                                  padding: 5px 0px 5px 0px !important;
+                                }
+                entities:
+                  - type: 'custom:button-text-card'
+                    style: *button_card
+                    entity: sensor.teya_bedroom_temperature
+                    title: Teya
+                    subtitle: |
+                      [[[
+                        if (states['binary_sensor.teya_motion_sensor'].state == 'off')
+                          return Math.round(entity.state) + "°F and no motion";
+                        return Math.round(entity.state) + "°F and there's motion";
+                      ]]]
+                    icon: 'mdi:hotel'
+                    icon_color: 'rgba(81, 134, 236)'
+                    background_color: 'var(--transparent)'
+                    large: true
+                  - type: custom:fold-entity-row
+                    head:
+                      type: section
+                      label: '.'
+                    items:
+                      - light.teya_bedroom_light_level
+                      - entity: fan.teya_bedroom_fan_level
+                        type: "custom:secondaryinfo-entity-row"
+                        secondary_info: "[[ fan.teya_bedroom_fan_level.attributes.speed ]]"
+                      #- switch.teya_heater
+                      - input_boolean.early_kids
+                      - input_boolean.teya_motion_switch
+                      - type: custom:state-switch
+                        entity: media_player.taya_bedroom_speaker
+                        states:
+                          "off":
+                            type: entities
+                            style: |
+                              ha-card {
+                                margin: -4px -14px -10px -16px !important;
+                              }
+                            entities:
+                              - media_player.taya_bedroom_speaker
+                          "on":
+                            type: entities
+                            style: |
+                              ha-card {
+                                margin: -4px -14px -10px -16px !important;
+                              }
+                            entities:
+                              - media_player.taya_bedroom_speaker
+                          idle:
+                            type: entities
+                            style: |
+                              ha-card {
+                                margin: -4px -14px -10px -16px !important;
+                              }
+                            entities:
+                              - media_player.taya_bedroom_speaker
+                          playing:
+                            type: media-control
+                            style: |
+                              ha-card {
+                                margin: 18px -31px -16px -26px !important;
+                              }
+                            entity: media_player.taya_bedroom_speaker
+                          paused:
+                            type: media-control
+                            style: |
+                              ha-card {
+                                margin: 18px -31px -16px -26px !important;
+                              }
+                            entity: media_player.taya_bedroom_speaker
+
+                ###########################################################
+                # Other Spaces
+                ###########################################################
+              - type: markdown
+                style: *card_header
+                content: |
+                  # OTHER SPACES
+
+                ###########################################################
+                # Garage
+                ###########################################################
+              - type: entities
+                style:
+                  .: |
+                    ha-card {
+                      --paper-card-background-color: var(--sidebar-background-color);
+                        padding: 4px 0px 4px 2px !important;
+                        box-shadow: var(--card-box-shadow);
+                        margin: -5px 14px 5px 14px;
+                        background:
+                          {% set temp = states('sensor.garage_multisensor_temperature') | float %}
+                          {% if 0 < temp < 55 %}
+                            linear-gradient(var(--card-temperature-cold), var(--sidebar-background-color));
+                          {% elif 55 <= temp < 80 %}
+                            linear-gradient(var(--sidebar-background-color), var(--sidebar-background-color));
+                          {% elif 80 <= temp < 90 %}
+                            linear-gradient(var(--card-temperature-warm), var(--sidebar-background-color));
+                          {% elif temp >= 90 %}
+                            linear-gradient(var(--card-temperature-hot), var(--sidebar-background-color));
+                          {% else %}
+                            Off
+                          {% endif %};
+                        background-size: cover;
+                    }
+                  "#states":
+                    $:
+                    fold-entity-row:
+                      $:
+                        "#head":
+                            ha-icon:
+                              $: |
+                                svg {
+                                  margin-top: -8px !important;
+                                  color: var(--app-header-text-color) !important;
+                                }
+                            hui-section-row:
+                              $: |
+                                .divider {
+                                  opacity: 0 !important;
+                                }
+                                .label {
+                                  opacity: 0 !important;
+                                } 
+                        "#items": |
+                            #items {
+                              padding: 0px !important;
+                              margin: 0px 15px 0px 10px !important;
+                            }
+                        .state-card-dialog:
+                          $: |
+                            hui-generic-entity-row {
+                              padding: 5px 0px 5px 0px !important;
+
+                            }
+                            ha-card {
+                              padding: 5px 0px 5px 0px !important;
+                            }
+                        secondaryinfo-entity-row:
+                          $:
+                            hui-toggle-entity-row:
+                              $: |
+                                hui-generic-entity-row {
+                                  padding: 5px 0px 5px 0px !important;
+                                }
+                entities:
+                  - type: 'custom:button-text-card'
+                    style: *button_card
+                    entity: sensor.garage_multisensor_temperature
+                    title: Garage
+                    subtitle: |
+                      [[[
+                        if (states['sensor.garage_multisensor_burglar'].state == '0')
+                          return Math.round(entity.state) + "°F and no motion";
+                        return Math.round(entity.state) + "°F and there's motion";
+                      ]]]
+                    icon: |
+                      [[[
+                        if (states['cover.garage_door_opener'].state == 'closed')
+                          return 'mdi:garage';
+                        return 'mdi:garage-open';
+                      ]]]
+                    icon_color: 'rgba(81, 134, 236)'
+                    background_color: 'var(--transparent)'
+                    large: true
+                  - type: custom:fold-entity-row
+                    head:
+                      type: section
+                      label: '.'
+                    items:
+                      - cover.garage_door_opener
+                      - cover.small_garage_door
+                      - light.garage_lights
+                      - sensor.garage_freezer_temperature
+                      - sensor.attic_temperature
+                      - entity: media_player.garage_tv
+                        type: custom:mini-media-player
+                        artwork_border: true
+                        show_source: true
+                        group: true
+                      - entity: media_player.work_bench_speaker
+                        type: custom:mini-media-player
+                        icon: mdi:speaker
+                        artwork_border: true
+                        show_tts: google
+                        group: true
+                        show_source: true
+                ###########################################################
+                # Kitchen
+                ###########################################################
+              - type: entities
+                style:
+                  .: |
+                    ha-card {
+                      --paper-card-background-color: var(--sidebar-background-color);
+                        padding: 4px 0px 4px 2px !important;
+                        box-shadow: var(--card-box-shadow);
+                        margin: 2px 14px 5px 14px;
+                        background:
+                          {% set temp = states('sensor.kitchen_multisensor_temperature') | float %}
+                          {% if 0 < temp < 55 %}
+                            linear-gradient(var(--card-temperature-cold), var(--sidebar-background-color));
+                          {% elif 55 <= temp < 80 %}
+                            linear-gradient(var(--sidebar-background-color), var(--sidebar-background-color));
+                          {% elif 80 <= temp < 90 %}
+                            linear-gradient(var(--card-temperature-warm), var(--sidebar-background-color));
+                          {% elif temp >= 90 %}
+                            linear-gradient(var(--card-temperature-hot), var(--sidebar-background-color));
+                          {% else %}
+                            Off
+                          {% endif %};
+                        background-size: cover;
+                    }
+                  "#states":
+                    $:
+                    fold-entity-row:
+                      $:
+                        "#head":
+                            ha-icon:
+                              $: |
+                                svg {
+                                  margin-top: -8px !important;
+                                  color: var(--app-header-text-color) !important;
+                                }
+                            hui-section-row:
+                              $: |
+                                .divider {
+                                  opacity: 0 !important;
+                                }
+                                .label {
+                                  opacity: 0 !important;
+                                } 
+                        "#items": |
+                            #items {
+                              padding: 0px !important;
+                              margin: 0px 15px 0px 10px !important;
+                            }
+                        .state-card-dialog:
+                          $: |
+                            hui-generic-entity-row {
+                              padding: 5px 0px 5px 0px !important;
+
+                            }
+                            ha-card {
+                              padding: 5px 0px 5px 0px !important;
+                            }
+                        secondaryinfo-entity-row:
+                          $:
+                            hui-toggle-entity-row:
+                              $: |
+                                hui-generic-entity-row {
+                                  padding: 5px 0px 5px 0px !important;
+                                }
+                entities:
+                  - type: 'custom:button-text-card'
+                    style: *button_card
+                    entity: sensor.kitchen_multisensor_temperature
+                    title: Kitchen
+                    subtitle: |
+                      [[[
+                        if (states['binary_sensor.living_room_motion_sensor'].state == 'off')
+                          return Math.round(entity.state) + "°F and no motion";
+                        return Math.round(entity.state) + "°F and there's motion";
+                      ]]]
+                    icon: 'mdi:stove'
+                    icon_color: 'rgba(81, 134, 236)'
+                    background_color: 'var(--transparent)'
+                    large: true
+                  - type: custom:fold-entity-row
+                    head:
+                      type: section
+                      label: '.'
+                    items:
+                      - light.kitchen_lights
+                      - light.dining_table_light_level
+                      - type: custom:state-switch
+                        entity: media_player.kitchen_speaker
+                        states:
+                          "off":
+                            type: entities
+                            style: |
+                              ha-card {
+                                margin: -4px -14px -10px -16px !important;
+                              }
+                            entities:
+                              - media_player.kitchen_speaker
+                          "on":
+                            type: entities
+                            style: |
+                              ha-card {
+                                margin: -4px -14px -10px -16px !important;
+                              }
+                            entities:
+                              - media_player.kitchen_speaker
+                          idle:
+                            type: entities
+                            style: |
+                              ha-card {
+                                margin: -4px -14px -10px -16px !important;
+                              }
+                            entities:
+                              - media_player.kitchen_speaker
+                          playing:
+                            type: media-control
+                            style: |
+                              ha-card {
+                                margin: 18px -31px -16px -26px !important;
+                              }
+                            entity: media_player.kitchen_speaker
+                          paused:
+                            type: media-control
+                            style: |
+                              ha-card {
+                                margin: 18px -31px -16px -26px !important;
+                              }
+                            entity: media_player.kitchen_speaker
+
+                ###########################################################
+                # Living Room
+                ###########################################################
+              - type: entities
+                style:
+                  .: |
+                    ha-card {
+                      --paper-card-background-color: var(--sidebar-background-color);
+                        padding: 4px 0px 4px 2px !important;
+                        box-shadow: var(--card-box-shadow);
+                        margin: 2px 14px 45px 14px;
+                        background:
+                          {% set temp = states('sensor.living_room_thermostat_temperature') | float %}
+                          {% if 0 < temp < 55 %}
+                            linear-gradient(var(--card-temperature-cold), var(--sidebar-background-color));
+                          {% elif 55 <= temp < 80 %}
+                            linear-gradient(var(--sidebar-background-color), var(--sidebar-background-color));
+                          {% elif 80 <= temp < 90 %}
+                            linear-gradient(var(--card-temperature-warm), var(--sidebar-background-color));
+                          {% elif temp >= 90 %}
+                            linear-gradient(var(--card-temperature-hot), var(--sidebar-background-color));
+                          {% else %}
+                            Off
+                          {% endif %};
+                        background-size: cover;
+                    }
+                  "#states":
+                    $:
+                    fold-entity-row:
+                      $:
+                        "#head":
+                            ha-icon:
+                              $: |
+                                svg {
+                                  margin-top: -8px !important;
+                                  color: var(--app-header-text-color) !important;
+                                }
+                            hui-section-row:
+                              $: |
+                                .divider {
+                                  opacity: 0 !important;
+                                }
+                                .label {
+                                  opacity: 0 !important;
+                                } 
+                        "#items": |
+                            #items {
+                              padding: 0px !important;
+                              margin: 0px 15px 0px 10px !important;
+                            }
+                        .state-card-dialog:
+                          $: |
+                            hui-generic-entity-row {
+                              padding: 5px 0px 5px 0px !important;
+
+                            }
+                            ha-card {
+                              padding: 5px 0px 5px 0px !important;
+                            }
+                        secondaryinfo-entity-row:
+                          $:
+                            hui-toggle-entity-row:
+                              $: |
+                                hui-generic-entity-row {
+                                  padding: 5px 0px 5px 0px !important;
+                                }
+                entities:
+                  - type: 'custom:button-text-card'
+                    style: *button_card
+                    entity: sensor.living_room_thermostat_temperature
+                    title: Living Room
+                    subtitle: |
+                      [[[
+                        if (states['binary_sensor.living_room_motion_sensor'].state == 'off')
+                          return Math.round(entity.state) + "°F and no motion";
+                        return Math.round(entity.state) + "°F and there's motion";
+                      ]]]
+                    icon: 'mdi:sofa'
+                    icon_color: 'rgba(81, 134, 236)'
+                    background_color: 'var(--transparent)'
+                    large: true
+                  - type: custom:fold-entity-row
+                    head:
+                      type: section
+                      label: '.'
+                    items:
+                      - light.living_room_fan_lights
+                      - light.living_room_light_level
+                      - light.entryway_light_level
+                      - light.entryway_niche_light_level
+                      - light.hallway_light_level
+                      - group.living_room_fans
+                      - light.flux_led_strip
+                      - sensor.pellet_percentage
+                      - sensor.pellet_distance
+                      - vacuum.cinder
+                      - entity: media_player.living_room_speaker
+                        type: custom:mini-media-player
+                        icon: mdi:speaker
+                        show_tts: google
+                        group: true
+                        volume_stateless: true
+                      - entity: media_player.sony_androidtv
+                        type: custom:mini-media-player
+                        icon: mdi:television
+                        group: true
+                        show_source: true
+                        volume_stateless: true
+                        artwork_border: true
+                        toggle_power: false
+              #- !include lovelace/views/cards/home/bathrooms.yaml
+
+                ###########################################################
+                # Exterior
+                ###########################################################
+              - type: markdown
+                style: *card_header
+                content: |
+                  # EXTERIOR
+              - type: entities
+                style: |
+                  ha-card {
+                    --paper-card-background-color: var(--sidebar-background-color);
+                      box-shadow: var(--card-box-shadow);
+                      margin: -5px 14px 25px 14px;
+                      background-image:
+                        {% set temp = states('sensor.outdoor_temperature') | float %}
+                        {% if 0 < temp < 55 %}
+                          linear-gradient(var(--card-temperature-cold), var(--sidebar-background-color));
+                        {% elif 55 <= temp < 80 %}
+                          linear-gradient(var(--sidebar-background-color), var(--sidebar-background-color));
+                        {% elif 80 <= temp < 90 %}
+                          linear-gradient(var(--card-temperature-warm), var(--sidebar-background-color));
+                        {% elif temp >= 90 %}
+                          linear-gradient(var(--card-temperature-hot), var(--sidebar-background-color));
+                        {% else %}
+                          Off
+                        {% endif %};
+                      background-size: cover;
+                    }
+                show_header_toggle: false
+                entities:
+                  - light.back_porch_lights
+                  - light.east_patio_lights
+                  - light.front_porch_lights
+                  - switch.east_patio_outlet_switch
+                  - switch.fountain_outlet_switch
+                  #- sensor.home_value
+              #- !include lovelace/views/cards/home/exterior.yaml
+          #- !include lovelace/views/cards/system.yaml
