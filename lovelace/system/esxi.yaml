@@ -1,0 +1,27 @@
+###########################################################
+# ESXi
+###########################################################
+type: vertical-stack
+cards:
+  - type: custom:decluttering-card
+    template: card_header_no_temp
+    variables:
+      - content: '## ESXI'
+  - type: entities
+    style: |
+      ha-card {
+        --paper-card-background-color: var(--sidebar-background-color);
+        box-shadow: var(--card-box-shadow);
+        margin: -5px 14px 25px 14px;
+      }
+    entities:
+      - sensor.esxi_vmhost_mario_local
+      - sensor.esxi_license_1
+      - sensor.esxi_datastore_ds_ssd
+      - sensor.esxi_datastore_ds_hdd
+      - sensor.esxi_vm_graylog
+      - sensor.esxi_vm_hass_nginx
+      - sensor.esxi_vm_hassos_02
+      - sensor.esxi_vm_server_2019
+      - sensor.esxi_vm_splunk
+      - sensor.esxi_vm_webserver01

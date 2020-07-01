@@ -1,0 +1,14 @@
+type: vertical-stack
+cards:
+  - !include system/info.yaml
+  - !include system/adguard.yaml
+  - !include system/speedtest.yaml
+  #- !include ../cards/system/esxi.yaml
+  - !include system/apcupsd.yaml
+  - !include system/zillow.yaml
+  - !include system/pollen.yaml
+  - !include system/flu.yaml
+  - !include system/covid.yaml
+  - !include system/danger.yaml
+  - !include system/modes.yaml
+  - !include system/test_bed.yaml

@@ -1,0 +1,69 @@
+###########################################################
+# DANGER
+###########################################################
+type: vertical-stack
+cards:
+  - type: custom:decluttering-card
+    template: card_header_no_temp
+    variables:
+      - content: '## DANGER ZONE'
+  - type: entities
+    style:
+      .: |
+        ha-card {
+          --paper-card-background-color: var(--sidebar-background-color);
+            box-shadow: var(--card-box-shadow);
+            margin: -5px 14px 25px 14px;
+            padding: 0px;
+        }
+      "#states":
+        fold-entity-row:
+          $:
+            "#head":
+                ha-icon:
+                  $: |
+                   svg {
+                    color: var(--app-header-text-color) !important;
+                    }
+                hui-section-row:
+                  $: |
+                    .divider {
+                      opacity: 0 !important;
+                    }
+                    .label {
+                      font-weight: 500 !important;
+                      font-size: 16px !important;
+                      margin-top: 5px !important;
+                      margin-left: 14px !important;
+                      color: var(--app-header-text-color) !important;
+                    } 
+            "#items": |
+                #items {
+                  padding: 0px !important;
+                  margin: 0px !important;
+                }
+            .state-card-dialog:
+              $: |
+                hui-generic-entity-row {
+                  padding: 5px 0px 5px 0px !important;
+                }
+                ha-card {
+                  padding: 5px 0px 5px 0px !important;
+                }
+            secondaryinfo-entity-row:
+              $:
+                hui-toggle-entity-row:
+                  $: |
+                    hui-generic-entity-row {
+                      padding: 5px 0px 5px 0px !important;
+                    }
+    entities:
+      - type: custom:fold-entity-row
+        head:
+          type: section
+          label: Modem
+        items:
+          - switch.modem_outlet_01
+          - switch.modem_outlet_02
+          - switch.modem_outlet_03
+          - switch.modem_outlet_all

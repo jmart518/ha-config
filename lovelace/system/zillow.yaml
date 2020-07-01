@@ -1,0 +1,30 @@
+###########################################################
+# Zillow
+###########################################################
+type: vertical-stack
+cards:
+  - type: custom:decluttering-card
+    template: card_header_no_temp
+    variables:
+      - content: '## ZILLOW ESTIMATE'
+  - type: custom:mini-graph-card
+    style: |
+      ha-card {
+        --paper-card-background-color: var(--sidebar-background-color);
+        box-shadow: var(--card-box-shadow);
+        margin: -5px 14px 25px 14px;
+      }
+    entities:
+      - entity: sensor.zestimate
+        name: '54 Covey CT'
+        #align_state: left
+        show:
+          labels: false
+          fill: 'true'
+          points: hover
+          #icon: false
+          extrema: true
+        points_per_hour: .2
+        line_width: 2
+        hours_to_show: 264
+        animate: true  

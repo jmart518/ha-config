@@ -1,0 +1,43 @@
+###########################################################
+# Zillow
+###########################################################
+type: vertical-stack
+cards:
+  - type: markdown
+    style: |
+      ha-card {
+        margin: 15px 0px 24px 22px;
+        font-size: 15px !important;
+        font-weight: 500 !important;
+        max-height: 10px !important;
+      }
+      ha-markdown {
+        padding: 0px 0px 0px 8px !important;
+        border-left: 3px solid rgba(81, 134, 236);
+        color: var(--card-header-text-color);
+      }
+    content: |
+      SPEED TEST
+  - type: custom:mini-graph-card
+    style: |
+      ha-card {
+        --paper-card-background-color: var(--sidebar-background-color);
+        box-shadow: var(--card-box-shadow);
+        margin: -5px 14px 25px 14px;
+      }
+    entities:
+      - entity: sensor.speedtest_download
+        name: Download
+        color: '#3498db'
+      - entity: sensor.speedtest_upload
+        name: Upload
+        color: '#e74c3c'
+    name: Speedtest
+    show:
+      labels: true
+      fill: 'true'
+      points: hover
+    #line_color: '#3498db'
+    line_width: 2
+    hours_to_show: 48
+    animate: true

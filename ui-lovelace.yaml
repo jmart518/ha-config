@@ -306,37 +306,14 @@ views:
         ###########################################################
         # Swipe
         ###########################################################
-      #- type: custom:swipe-card
-      #  start_card: 2
-      #  parameters:
-      #    roundLengths: true
-      #    autoHeight: true
-      #    shortSwipes: false
-      #    longSwipesRatio: 0.25
-      #  cards:
-            ###########################################################
-            # Cameras
-            ###########################################################
-          - type: vertical-stack
-            cards:
-              - type: custom:state-switch
-                entity: sensor.daylight
-                states:
-                  night_start:
-                    type: button
-                    style: |
-                      ha-card {
-                        --paper-card-background-color: var(--sidebar-background-color);
-                          box-shadow: var(--card-box-shadow);
-                          margin: 25px 105px -1px 105px;
-                          border-radius: 50px;
-                      }
-                    name: Time for bed?
-                    tap_action:
-                      action: call-service
-                      service: script.turn_on
-                      service_data:
-                        entity_id: script.bedtime
+      - type: custom:swipe-card
+        start_card: 1
+        parameters:
+          roundLengths: true
+          autoHeight: true
+          shortSwipes: false
+          longSwipesRatio: 0.25
+        cards:
 
             ###########################################################
             # Home
@@ -1201,17 +1178,17 @@ views:
                         icon: mdi:television
                         artwork_border: true
                         group: true
-                        shortcuts:
-                          - script.master_bedroom_tv_screensaver
-                      - entity: media_player.the_bug_s_tv_un60d6420
-                        type: custom:mini-media-player
-                        icon: mdi:television
-                        hide:
-                          info: true
-                          source: true
-                          controls: true
-                          volume: true
-                        group: true
+                        #shortcuts:
+                        #  - script.master_bedroom_tv_screensaver
+                      - entity: media_player.master_bedroom_tv
+                        #type: custom:mini-media-player
+                        #icon: mdi:television
+                        #hide:
+                        #  info: true
+                        #  source: true
+                        #  controls: true
+                        #  volume: true
+                        #group: true
                       - entity: media_player.master_bedroom_speaker
                         type: custom:mini-media-player
                         icon: mdi:speaker
@@ -1539,7 +1516,7 @@ views:
                     title: Kitchen
                     subtitle: |
                       [[[
-                        if (states['binary_sensor.living_room_motion_sensor'].state == 'off')
+                        if (states['sensor.kitchen_multisensor_burglar'].state == '0')
                           return Math.round(entity.state) + "°F and no motion";
                         return Math.round(entity.state) + "°F and there's motion";
                       ]]]
@@ -1744,5 +1721,34 @@ views:
                   - switch.east_patio_outlet_switch
                   - switch.fountain_outlet_switch
                   #- sensor.home_value
+              - type: entities
+                style: |
+                  ha-card {
+                    --paper-card-background-color: var(--sidebar-background-color);
+                    box-shadow: var(--card-box-shadow);
+                    background-
+                    margin: 25px 14px 25px 14px;
+                  }
+                entities:
+                  #- input_number.grill_alert_low
+                  #- input_number.grill_alert_high
+                  - input_number.grill_probe_1_target
+                  #- sensor.grill_alert_temp
+                  - sensor.target_alert_temp_probe_1
+                  - sensor.igrill_battery
+                  - sensor.igrill_probe_1
+                  - type: custom:mini-graph-card
+                    entities:
+                      - sensor.igrill_probe_1
+                    name: Temp
+                    line_color: '#3498db'
+                    line_width: '2'
+                    hours_to_show: 48
+                    animate: true
+                    show:
+                      labels: false
+                      fill: true
+                      points: hover
+                      extrema: false
               #- !include lovelace/views/cards/home/exterior.yaml
-          #- !include lovelace/views/cards/system.yaml
+          - !include lovelace/system.yaml

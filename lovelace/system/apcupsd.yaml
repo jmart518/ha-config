@@ -1,0 +1,38 @@
+###########################################################
+# Pollen
+###########################################################
+type: vertical-stack
+cards:
+  - type: custom:decluttering-card
+    template: card_header_no_temp
+    variables:
+      - content: '## APC UPS'
+  - type: entities
+    style: |
+      ha-card {
+        --paper-card-background-color: var(--sidebar-background-color);
+        box-shadow: var(--card-box-shadow);
+        margin: -5px 14px 25px 14px;
+      }
+    entities:
+      - sensor.ups_battery
+      - sensor.ups_battery_shutdown
+      - sensor.ups_battery_timeout
+      #- sensor.ups_cable_type
+      #- sensor.ups_daemon_info
+      #- sensor.ups_driver
+      #- sensor.ups_hostname
+      - sensor.ups_input_voltage
+      #- sensor.ups_input_voltage_high
+      #- sensor.ups_input_voltage_low
+      - sensor.ups_load
+      - sensor.ups_mode
+      - sensor.ups_model
+      #- sensor.ups_name
+      #- sensor.ups_output_voltage
+      - sensor.ups_shutdown_time
+      - sensor.ups_startup_time
+      - sensor.ups_status
+      #- sensor.ups_status_data
+      #- sensor.ups_status_date
+      - sensor.ups_time_left

@@ -1,0 +1,57 @@
+###########################################################
+# Test Bed
+###########################################################
+type: vertical-stack
+cards:
+  - type: custom:decluttering-card
+    template: card_header_no_temp
+    variables:
+      - content: '## TEST BED'
+  - type: entities
+    style: |
+      ha-card {
+        --paper-card-background-color: var(--sidebar-background-color);
+        box-shadow: var(--card-box-shadow);
+        margin: 5px 14px 25px 14px;
+      }
+    entities:
+      - type: custom:fold-entity-row
+        head:
+          type: section
+          label: Test Items
+        items:
+          - cover.gate_control
+          - switch.gate_switch
+          - input_boolean.nr_test
+          - input_boolean.guest_mode
+          - switch.xiaomi_gw
+          - sensor.rest_sensor
+  - type: entities
+    style: |
+      ha-card {
+        --paper-card-background-color: var(--sidebar-background-color);
+        box-shadow: var(--card-box-shadow);
+        background-
+        margin: 25px 14px 25px 14px;
+      }
+    entities:
+      #- input_number.grill_alert_low
+      #- input_number.grill_alert_high
+      - input_number.grill_probe_1_target
+      #- sensor.grill_alert_temp
+      - sensor.target_alert_temp_probe_1
+      - sensor.igrill_battery
+      - sensor.igrill_probe_1
+      - type: custom:mini-graph-card
+        entities:
+          - sensor.igrill_probe_1
+        name: Temp
+        line_color: '#3498db'
+        line_width: '2'
+        hours_to_show: 48
+        animate: true
+        show:
+          labels: false
+          fill: true
+          points: hover
+          extrema: false

@@ -1,0 +1,47 @@
+###########################################################
+# System Info
+###########################################################
+type: vertical-stack
+cards:
+  - type: markdown
+    style: |
+      ha-card {
+        margin: 20px 0px 20px 22px;
+        font-size: 15px !important;
+        font-weight: 500 !important;
+        max-height: 10px !important;
+      }
+      ha-markdown {
+        padding: 0px 0px 0px 8px !important;
+        border-left: 3px solid rgba(81, 134, 236);
+        color: var(--card-header-text-color);
+      }
+    content: |
+      SYSTEM INFO
+  - type: entities
+    style: |
+      ha-card {
+        --paper-card-background-color: var(--sidebar-background-color);
+        box-shadow: var(--card-box-shadow);
+        margin: 0px 14px 25px 14px;
+      }
+    show_header_toggle: false
+    entities:
+      - type: custom:mini-graph-card
+        entities:
+        - entity: sensor.processor_use
+          name: CPU
+          color: '#3498db'
+        show:
+          labels: false
+          fill: true
+          points: hover
+          extrema: false
+        #line_color: '#3498db'
+        line_width: 2
+        hours_to_show: 48
+        animate: 'true'
+        height: 75
+      - sensor.disk_use_percent_home
+      - sensor.memory_free
+      - sensor.potential_breaking_changes

@@ -1,0 +1,22 @@
+###########################################################
+# Flu
+###########################################################
+type: vertical-stack
+cards:
+  - type: custom:decluttering-card
+    template: card_header_no_temp
+    variables:
+      - content: '## FLU'
+  - type: entities
+    style: |
+      ha-card {
+        --paper-card-background-color: var(--sidebar-background-color);
+        box-shadow: var(--card-box-shadow);
+        margin: -5px 14px 25px 14px;
+      }
+    entities:
+      - sensor.cold_flu_index_today
+      - sensor.avian_flu_symptoms
+      - sensor.cold_flu_forecasted_average
+      - sensor.flu_symptoms
+      - sensor.flu_like_symptoms

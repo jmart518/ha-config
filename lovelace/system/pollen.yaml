@@ -1,0 +1,31 @@
+###########################################################
+# Pollen
+###########################################################
+type: vertical-stack
+cards:
+  - type: custom:decluttering-card
+    template: card_header_no_temp
+    variables:
+      - content: '## POLLEN'
+  - type: entities
+    style: |
+      ha-card {
+        --paper-card-background-color: var(--sidebar-background-color);
+        box-shadow: var(--card-box-shadow);
+        margin: -5px 14px 25px 14px;
+      }
+    entities:
+      - entity: sensor.allergy_index_today
+        type: "custom:secondaryinfo-entity-row"
+        secondary_info: "[[ sensor.allergy_index_today.attributes.allergen_name_1 ]]/[[ sensor.allergy_index_today.attributes.allergen_name_2 ]]/[[ sensor.allergy_index_today.attributes.allergen_name_3 ]]"
+      - entity: sensor.allergy_index_tomorrow
+        type: "custom:secondaryinfo-entity-row"
+        secondary_info: "[[ sensor.allergy_index_tomorrow.attributes.allergen_name_1 ]]/[[ sensor.allergy_index_tomorrow.attributes.allergen_name_2 ]]/[[ sensor.allergy_index_tomorrow.attributes.allergen_name_3 ]]"
+      #- entity: sensor.allergy_index_yesterday
+      #  type: "custom:secondaryinfo-entity-row"
+      #  secondary_info: "[[ sensor.yesterdays_allergen_1.state ]]/[[ sensor.yesterdays_allergen_2.state ]]"
+      - entity: sensor.allergy_index_forecasted_average
+        type: "custom:secondaryinfo-entity-row"
+        secondary_info: "[[ sensor.allergy_index_forecasted_average.attributes.trend ]]"
+      #- sensor.allergy_index_historical_average
+      #- sensor.cold__flu_forecasted_average

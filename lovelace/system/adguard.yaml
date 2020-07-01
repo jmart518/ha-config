@@ -1,0 +1,87 @@
+###########################################################
+# Adguard
+###########################################################
+type: vertical-stack
+cards:
+  - type: markdown
+    style: |
+      ha-card {
+        margin: 15px 0px 24px 22px;
+        font-size: 15px !important;
+        font-weight: 500 !important;
+        max-height: 10px !important;
+      }
+      ha-markdown {
+        padding: 0px 0px 0px 8px !important;
+        border-left: 3px solid rgba(81, 134, 236);
+        color: var(--card-header-text-color);
+      }
+    content: |
+      ADGUARD
+  - type: custom:vertical-stack-in-card
+    style: |
+      ha-card {
+        --paper-card-background-color: var(--sidebar-background-color);
+        box-shadow: var(--card-box-shadow);
+        margin: -5px 14px 25px 14px;
+      }
+    cards:
+      - type: entities
+        entities:
+          - sensor.adguard_dns_queries_blocked_ratio
+          - sensor.adguard_parental_control_blocked
+          - sensor.adguard_safe_browsing_blocked
+      - type: horizontal-stack
+        cards:
+          - type: custom:mini-graph-card
+            entities:
+              - sensor.adguard_dns_queries
+            name: Queries
+            line_color: '#3498db'
+            line_width: '2'
+            hours_to_show: 48
+            animate: true
+            show:
+              labels: false
+              fill: true
+              points: hover
+              extrema: false
+          - type: custom:mini-graph-card
+            entities:
+              - sensor.adguard_dns_queries_blocked
+            name: Blocked
+            line_color: '#3498db'
+            line_width: '2'
+            hours_to_show: 48
+            animate: true
+            show:
+              labels: false
+              fill: true
+              points: hover
+              extrema: false
+      - type: entities
+        style:
+          "#states div":
+            fold-entity-row:
+              $:
+                "#head hui-section-row":
+                  $: |
+                    .divider {
+                      opacity: 0 !important;
+                    }
+                    .label {
+                      font-weight: 600;
+                      margin-top: 4px !important;
+                    }
+        entities:      
+          - type: custom:fold-entity-row
+            head:
+              type: section
+              label: Controls
+            items:
+              - switch.adguard_filtering
+              - switch.adguard_parental_control
+              - switch.adguard_protection
+              - switch.adguard_query_log
+              - switch.adguard_safe_browsing
+              - switch.adguard_safe_search
